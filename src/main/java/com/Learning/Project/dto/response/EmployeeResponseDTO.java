@@ -1,20 +1,30 @@
-package com.Learning.Project.dto.request;
+package com.Learning.Project.dto.response;
 
-public class EmployeeRequestDTO {
+public class EmployeeResponseDTO {
+    private String id;
     private String name;
     private String position;
     private String department;
 
     // Constructors
-    public EmployeeRequestDTO() {}
+    public EmployeeResponseDTO() {}
 
-    public EmployeeRequestDTO(String name, String position, String department) {
+    public EmployeeResponseDTO(String id, String name, String position, String department) {
+        this.id = id;
         this.name = name;
         this.position = position;
         this.department = department;
     }
 
     // Getters and Setters
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
     public String getName() {
         return name;
     }
@@ -37,15 +47,5 @@ public class EmployeeRequestDTO {
 
     public void setDepartment(String department) {
         this.department = department;
-    }
-
-    // toString method for debugging
-    @Override
-    public String toString() {
-        return "EmployeeRequestDTO{" +
-                "name='" + name + '\'' +
-                ", position='" + position + '\'' +
-                ", department='" + department + '\'' +
-                '}';
     }
 }
