@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -42,7 +43,10 @@ public class EmployeeController {
         employee.setName(employeeRequestDTO.getName());
         employee.setPosition(employeeRequestDTO.getPosition());
         employee.setDepartment(employeeRequestDTO.getDepartment());
+        employee.setCreatedAt(LocalDateTime.now());
+        employee.setUpdatedAt(LocalDateTime.now());
         Employee createdEmployee = employeeService.saveEmployee(employee);
+
         EmployeeResponseDTO responseDTO = employeeService.convertToDTO(createdEmployee);
         return ResponseEntity.status(201).body(new ApiResponse<>(201, responseDTO));
     }
