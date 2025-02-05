@@ -6,6 +6,9 @@ public class EmployeeRequestDTO {
     private String name;
     private String position;
     private String department;
+    private String email;
+    private String country_code;
+    private String phone_number;
 
     // Constructors
     public EmployeeRequestDTO() {}
@@ -40,6 +43,32 @@ public class EmployeeRequestDTO {
     public void setDepartment(String department) {
         this.department = department;
     }
+
+
+    public  void setEmail(String email){
+        this.email=email;
+    }
+
+    public void setCountry_code(String country_code){
+        this.country_code=country_code;
+    }
+
+    public void setPhone_number(String phone_number){
+        this.phone_number=phone_number;
+    }
+
+    public String  getPhone_number(){
+        return phone_number;
+    }
+
+    public String getCountry_code() {
+            return country_code;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
 
     // toString method for debugging
     @Override

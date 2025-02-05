@@ -45,6 +45,13 @@ public class EmployeeController {
         employee.setDepartment(employeeRequestDTO.getDepartment());
         employee.setCreatedAt(LocalDateTime.now());
         employee.setUpdatedAt(LocalDateTime.now());
+        employee.setEmail(employeeRequestDTO.getEmail());
+        employee.setCountry_code(employeeRequestDTO.getCountry_code());
+        employee.setEmail(employeeRequestDTO.getEmail());
+        employee.setPhone_number(employeeRequestDTO.getPhone_number());
+
+
+
         Employee createdEmployee = employeeService.saveEmployee(employee);
 
         EmployeeResponseDTO responseDTO = employeeService.convertToDTO(createdEmployee);

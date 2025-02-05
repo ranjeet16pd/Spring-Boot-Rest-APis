@@ -5,16 +5,12 @@ public class EmployeeResponseDTO {
     private String name;
     private String position;
     private String department;
+    private String country_code;
+    private String phone_number;
+    private String email;
 
     // Constructors
     public EmployeeResponseDTO() {}
-
-    public EmployeeResponseDTO(String id, String name, String position, String department) {
-        this.id = id;
-        this.name = name;
-        this.position = position;
-        this.department = department;
-    }
 
     // Getters and Setters
     public String getId() {
@@ -47,5 +43,43 @@ public class EmployeeResponseDTO {
 
     public void setDepartment(String department) {
         this.department = department;
+    }
+
+    public String getCountry_code() {
+        return country_code;
+    }
+
+    public void setCountry_code(String country_code) {
+        this.country_code = country_code;
+    }
+
+    public String getPhone_number() {
+        return phone_number;
+    }
+
+    public void setPhone_number(String phone_number) {
+        this.phone_number = phone_number;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    // toString method for debugging
+    @Override
+    public String toString() {
+        return "EmployeeResponseDTO{" +
+                "id='" + id + '\'' +
+                ", name='" + name + '\'' +
+                ", position='" + position + '\'' +
+                ", department='" + department + '\'' +
+                ", country_code='" + country_code + '\'' +
+                ", phone_number='" + phone_number + '\'' +
+                ", email='" + email + '\'' +
+                '}';
     }
 }

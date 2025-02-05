@@ -37,6 +37,12 @@ public class EmployeeService {
         dto.setName(employee.getName());
         dto.setPosition(employee.getPosition());
         dto.setDepartment(employee.getDepartment());
+        dto.setCountry_code(employee.getCountryCode());
+        dto.setCountry_code(employee.getCountryCode());
+        dto.setEmail(employee.getEmail());
+
+
+
         return dto;
     }
 }
