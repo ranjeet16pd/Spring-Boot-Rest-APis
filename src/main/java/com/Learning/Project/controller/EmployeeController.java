@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @RestController
@@ -58,10 +59,35 @@ public class EmployeeController {
         return ResponseEntity.status(201).body(new ApiResponse<>(201, responseDTO));
     }
 
+
+
     @DeleteMapping("/{id}")
-    public ResponseEntity<ApiResponse<Void>> deleteEmployee(@PathVariable String id) {
-        employeeService.deleteEmployee(id);
-        return ResponseEntity.noContent().build();
+    public ResponseEntity<ApiResponse<String>> deleteEmployee(@PathVariable String id) {
+        boolean deleted = employeeService.deleteEmployee(id);
+        if (deleted) {
+            return ResponseEntity.ok(new ApiResponse<>(200, "Employee deleted successfully"));
+        } else {
+            return ResponseEntity.status(404).body(new ApiResponse<>(404, "Employee not found"));
+        }
+    }
+    @PutMapping("/{id}")
+    public ResponseEntity<ApiResponse<EmployeeResponseDTO>> updateEmployee(@PathVariable String id, @RequestBody EmployeeRequestDTO employeeRequestDTO) {
+        Employee updatedEmployee = new Employee();
+        updatedEmployee.setName(employeeRequestDTO.getName());
+        updatedEmployee.setPosition(employeeRequestDTO.getPosition());
+        updatedEmployee.setDepartment(employeeRequestDTO.getDepartment());
+        updatedEmployee.setEmail(employeeRequestDTO.getEmail());
+        updatedEmployee.setCountry_code(employeeRequestDTO.getCountry_code());
+        updatedEmployee.setPhone_number(employeeRequestDTO.getPhone_number());
+        updatedEmployee.setUpdatedAt(LocalDateTime.now());
+
+        Optional<Employee> updatedEmployeeResult = employeeService.updateEmployee(id, updatedEmployee);
+        if (updatedEmployeeResult.isPresent()) {
+            EmployeeResponseDTO responseDTO = employeeService.convertToDTO(updatedEmployeeResult.get());
+            return ResponseEntity.ok(new ApiResponse<>(200, responseDTO));
+        } else {
+            return ResponseEntity.status(404).body(new ApiResponse<>(404, null));
+        }
     }
 
 }
